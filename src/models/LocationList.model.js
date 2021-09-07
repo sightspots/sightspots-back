@@ -1,6 +1,8 @@
 import Schema from "mongoose/Schema";
 import mongoose from "mongoose";
 
+const { Schema } = mongoose;
+
 const locationListSchema = new Schema(
   {
     title: { type: String, required: true },

@@ -1,6 +1,8 @@
 import Schema from "mongoose/Schema";
 import mongoose from "mongoose";
 
+const { Schema } = mongoose;
+
 const userSchema = new Schema(
   {
     role: { type: String, default: "user" },
