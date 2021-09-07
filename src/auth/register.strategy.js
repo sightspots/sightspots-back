@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import { Strategy as LocalStrategy } from 'passport-local';
+const LocalStrategy = require("passport-local").Strategy;
 import User from '../models/User.model.js';
 
 const validateEmail = (email) => {
