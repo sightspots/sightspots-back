@@ -12,14 +12,14 @@ const loginStrategy = new LocalStrategy(
         try {
             const existingUser = await User.findOne({ email });
             if (!existingUser) {
-                const error = new Error('The user does not exist.');
+                const error = new Error('El usuario no existe.');
                 error.status = 401;
                 return done(error);
             }
 
             const isValidPassword = await bcrypt.compare(password, existingUser.password);           
             if (!isValidPassword) {
-              const error = new Error('Password is not valid.');
+              const error = new Error('La contraseña no es correcta.');
               return done(error);
             }
 
