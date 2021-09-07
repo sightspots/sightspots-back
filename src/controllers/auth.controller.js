@@ -2,7 +2,7 @@ import passport from "passport";
 
 const registerGet = (req, res, next) => {
 
-    return res.json("Pagina de registro");
+    return res.json("Página de registro");
 }
 
 const registerPost = async (req, res, next) => {
@@ -11,7 +11,7 @@ const registerPost = async (req, res, next) => {
 
             if (error) return next(error);
         
-            req.login(user, (error) => (error ? next(error) : res.json("Te has registrado")));
+            req.login(user, (error) => (error ? next(error) : res.json("Te has registrado.")));
         
     }
 

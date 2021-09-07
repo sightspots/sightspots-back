@@ -1,5 +1,4 @@
-import Schema from "mongoose/Schema";
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
 

@@ -10,25 +10,23 @@ import auth from './auth/index.js';
 
 import authRoutes from './routes/auth.routes'
 
-// Express configuration.
-const app = express();
-
-// Dotenv configuration.
-dotenv.config();
-
-// Connection to database.
+// Connection to database
 db.connect();
 
-
 // Conexion al puerto
-const PORT = process.env.PORT || 4000
+const PORT = process.env.PORT || 4000;
+
+// Express configuration
+const app = express();
+
+// Dotenv configuration
+dotenv.config();
 
 // Crear el req.body
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-
-// Auth configuration.
+// Auth configuration
 auth.setStrategies();
 app.use(session({
     secret: process.env.SECRET_KEY,
@@ -43,15 +41,13 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-// Rutas
+// Routes
 app.use("/auth", authRoutes);
 
-
-// Error handler.
+// Error handler
 app.use((error, req, res, next) => {
     console.log(error);
     return res.status(error.status || 500).json(`Error ${error.status}: ${error.message}.`);
 });
 
-
-app.listen(PORT, () => console.log(`Servidor a tota virolla en http://localhost:${PORT}`))
+app.listen(PORT, () => console.log(`Servidor a tota virolla en http://localhost:${PORT}.`))

@@ -1,5 +1,4 @@
-import Schema from "mongoose/Schema";
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
 
@@ -11,8 +10,8 @@ const userSchema = new Schema(
     email: { type: String, required: true },
     password: { type: String, required: true },
     avatar: { type: String, default: "" },
-    favs: [{ type: mongoose.types.ObjectId, ref: "Location" }],
-    location: [{ type: mongoose.types.ObjectId, ref: "Location" }],
+    favs: [{ type: mongoose.Types.ObjectId, ref: "Location" }],
+    location: [{ type: mongoose.Types.ObjectId, ref: "Location" }],
   },
   { timestamps: true }
 );
