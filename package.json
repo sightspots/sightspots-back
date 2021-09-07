@@ -1,0 +1,33 @@
+{
+  "name": "sightspots",
+  "version": "1.0.0",
+  "description": "SightSpots project",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js",
+    "dev": "nodemon --exec babel-node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sightspots/sightspots-back.git"
+  },
+  "author": "SightSpots Group",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sightspots/sightspots-back/issues"
+  },
+  "homepage": "https://github.com/sightspots/sightspots-back#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.5",
+    "nodemon": "^2.0.12"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.15.4",
+    "@babel/core": "^7.15.5",
+    "@babel/node": "^7.15.4",
+    "@babel/preset-env": "^7.15.4"
+  }
+}
