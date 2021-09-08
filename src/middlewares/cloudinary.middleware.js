@@ -29,7 +29,7 @@ const cloudinaryAvatarUpload = (req, res, next) => {
 }
 
 const cloudinaryLocationUpload = (req, res, next) => {
-    if (req.files) {
+    if (req.file) {
 
         const locationEndPipe = cloudinary.uploader.upload_stream({ folder: 'sightspots_loc_pictures' }, function (error, file) {
             if (error) next(error);
@@ -37,7 +37,7 @@ const cloudinaryLocationUpload = (req, res, next) => {
             req.pictureUrl = file.url;
             next();
         });
-
+        
         streamifier.createReadStream(req.file.buffer).pipe(locationEndPipe);
     } else {
         next();
