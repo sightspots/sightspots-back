@@ -7,6 +7,7 @@ import MongoStore from 'connect-mongo';
 
 import db from './utils/db.config.js';
 import auth from './auth/index.js';
+import authMiddleware from './middlewares/auth.middleware.js';
 
 import authRoutes from './routes/auth.routes'
 
@@ -40,7 +41,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-
+// TODO: Añadir authMiddleware.isAuth a las rutas que deban estar securizadas.
 // Routes
 app.use("/auth", authRoutes);
 
