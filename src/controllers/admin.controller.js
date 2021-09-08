@@ -76,8 +76,6 @@ const editGet = async (req, res, next) => {
 
     return next(error);
   }
-
-
 }
 
 // Petición PUT para editar la location
