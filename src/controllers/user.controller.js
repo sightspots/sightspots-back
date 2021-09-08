@@ -1,4 +1,5 @@
 import User from "../models/User.model";
+import LocationList from "../models/LocationList.model";
 import bcrypt from "bcrypt";
 
 const getUsers = async (req, res, next) => {
@@ -56,7 +57,7 @@ const deleteUser = async (req, res, next) => {
 const putFav = async (req, res, next) => {
   try {
     const userId = req.params.id;
-    const locationId = req.body.id;
+    const locationId = req.body.locationId;
     const uptadeUser = await User.findByIdAndUpdate(
       userId,
       { $push: {favs:`${locationId}`} },
@@ -67,6 +68,20 @@ const putFav = async (req, res, next) => {
     next(error);
   }
 };
+const deleteFav = async (req, res, next) => {
+  try {
+    const userId = req.params.id;
+    const locationId = req.body.locationId;
+    const uptadeUser = await User.findByIdAndUpdate(
+      userId,
+      { $pull: { favs: `${locationId}`} },
+      { new: true }
+    );
+    return res.status(200).json(uptadeUser);
+  } catch (error) {
+    next(error);
+  }
+}
 
 export default {
   getUsers,
@@ -74,4 +89,5 @@ export default {
   deleteUser,
   putUser,
   putFav,
+  deleteFav
 };

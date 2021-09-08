@@ -7,8 +7,8 @@ router.get("/users", userCrtl.getUsers);// * los usuarios
 router.get("/user/:id", userCrtl.getUser);// 1 usuario
 router.delete("/delete/:id", userCrtl.deleteUser);// borrar usuario
 router.put("/edit/:id", userCrtl.putUser);// editar usuario
+router.put("/put-fav/:id", userCrtl.putFav);//añadir a favoritos
+router.put("/delete-fav/:id");//crear lista
 
-// endpoints para añadir locarions?
-router.put("/put-fav/:id", userCrtl.putFav);//
 
 export default router;
