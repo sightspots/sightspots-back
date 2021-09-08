@@ -86,6 +86,16 @@ const deleteFav = async (req, res, next) => {
 };
 
 // TODO Hacer controlador del endpoint de ver todas las listas, ver una lista concreta, crear una lista y editar una lista 
+const postList = async (req, res, next) => {
+  try {
+    const newList = new LocationList({
+      title:req.body.title,
+    });
+    return res.status(200).json(newList);
+  } catch (error) {
+    next(error);
+  }
+}
 
 export default {
   getUsers,
@@ -93,5 +103,6 @@ export default {
   deleteUser,
   putUser,
   putFav,
-  deleteFav
+  deleteFav,
+  postList
 };
