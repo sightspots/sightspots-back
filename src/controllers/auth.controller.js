@@ -46,7 +46,7 @@ const loginPost = (req, res, next) =>{
 }
 
 const logoutPost = (req, res, next) =>{
-    console.log("dentro de logout");
+   
     if(req.user){
     req.logout();
     req.session.destroy(() =>{
