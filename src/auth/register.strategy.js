@@ -41,10 +41,12 @@ const registerStrategy = new LocalStrategy(
       const saltRounds = 10;
       const hash = await bcrypt.hash(password, saltRounds);
 
+      // TODO: capturar avatar en caso de que el user lo suba
       const newUser = new User({
         email,
         password: hash,
         name: req.body.name,
+        surname: req.body.surname,
       });
 
       const savedUser = await newUser.save();
