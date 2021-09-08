@@ -21,4 +21,4 @@ const setStrategies = () => {
   passport.use('login', loginStrategy);
 };
 
-export default setStrategies;
+export default { setStrategies };
