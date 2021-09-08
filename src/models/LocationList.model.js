@@ -6,6 +6,7 @@ const locationListSchema = new Schema(
   {
     title: { type: String, required: true },
     locations: [{ type: mongoose.Types.ObjectId, ref: "Location" }],
+    user: { type: mongoose.Types.ObjectId, ref: "User" }
   },
   { timestamps: true }
 );

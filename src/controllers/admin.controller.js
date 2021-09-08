@@ -6,9 +6,9 @@ const indexGet = async (req, res, next) => {
 
   try {
 
-    // const locations = await Location.find();
+    const locations = await Location.find();
 
-    return res.json("Lista de todas las locations");
+    return res.json(locations);
 
   } catch (error) {
 

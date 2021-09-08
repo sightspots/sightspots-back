@@ -9,9 +9,11 @@ import db from './utils/db.config.js';
 import auth from './auth/index.js';
 import authMiddleware from './middlewares/auth.middleware.js';
 
+import indexRoutes from './routes/index.routes'
 import authRoutes from './routes/auth.routes'
 import userRoutes from "./routes/users.routes";
 import adminRoutes from './routes/admin.routes'
+import locationsRoutes from './routes/admin.routes'
 
 // Connection to database
 db.connect();
@@ -44,9 +46,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Routes
+app.use("/", indexRoutes);
 app.use("/auth", authRoutes);
 app.use("/user", authMiddleware.isAuth, userRoutes);
 app.use("/admin", adminRoutes);
+app.use("/locations", locationsRoutes);
 
 // Error handler
 app.use((error, req, res, next) => {
