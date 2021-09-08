@@ -56,36 +56,8 @@ const deleteUser = async (req, res, next) => {
     next(error);
   }
 };
-const putFav = async (req, res, next) => {
-  try {
-    const userId = req.params.id;
-    const locationId = req.body.locationId;
-    const uptadeUser = await User.findByIdAndUpdate(
-      userId,
-      { $push: {favs:`${locationId}`} },
-      { new: true }
-    );
-    return res.status(200).json(uptadeUser);
-  } catch (error) {
-    next(error);
-  }
-};
-const deleteFav = async (req, res, next) => {
-  try {
-    const userId = req.params.id;
-    const locationId = req.body.locationId;
-    const uptadeUser = await User.findByIdAndUpdate(
-      userId,
-      { $pull: { favs: `${locationId}`} },
-      { new: true }
-    );
-    return res.status(200).json(uptadeUser);
-  } catch (error) {
-    next(error);
-  }
-};
 
-// TODO Hacer controlador del endpoint de ver todas las listas, ver una lista concreta, crear una lista y editar una lista 
+
 
 export default {
   getUsers,
