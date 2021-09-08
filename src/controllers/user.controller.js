@@ -65,7 +65,36 @@ const postList = async (req, res, next) => {
       locations: [],
       user: req.user._id
     });
+    await newList.save();
     return res.status(200).json(newList);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const addLocationToList = async (req, res, next) => {
+  const { id } = req.params;
+
+  try {
+    const locationToAdd = new LocationList({
+      locations: req.body.locations,
+    });
+
+    const updatedList = await LocationList.findByIdAndUpdate(
+      id,
+      { $addToSet: { locations: locationToAdd.locations } },
+      { new: true }
+    );
+    return res.status(200).json(updatedList);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const getLists = async (req, res, next) => {
+  try {
+    const locationLists = await LocationList.find({ user: req.user._id });
+    return res.status(200).json(locationLists);
   } catch (error) {
     next(error);
   }
@@ -76,5 +105,7 @@ export default {
   getUser,
   deleteUser,
   putUser,
-  postList
+  postList,
+  addLocationToList,
+  getLists
 };
