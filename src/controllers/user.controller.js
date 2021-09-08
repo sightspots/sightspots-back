@@ -29,7 +29,7 @@ const putUser = async (req, res, next) => {
     const saltRounds = 10;
     password = await bcrypt.hash(password, saltRounds);
 
-    const uptadeUser = await User.findByIdAndUpdate(
+    const updatedUser = await User.findByIdAndUpdate(
       id,
       {
         name,
@@ -41,7 +41,7 @@ const putUser = async (req, res, next) => {
 
       { new: true }
     );
-    return res.status(200).json(uptadeUser);
+    return res.status(200).json(updatedUser);
   } catch (error) {
     next(error);
   }
