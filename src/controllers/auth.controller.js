@@ -11,11 +11,49 @@ const registerPost = async (req, res, next) => {
 
             if (error) return next(error);
         
-            req.login(user, (error) => (error ? next(error) : res.json("Te has registrado.")));
+            req.login(user, (error) => (error ? next(error) : res.json("Te has registrado")));
         
     }
 
     passport.authenticate("register",done)(req);
 }
 
-export default { registerGet, registerPost };
+const loginGet = (req, res, next) => {
+
+    return res.json("Página de loguin");
+}
+
+const loginPost = (req, res, next) =>{
+
+
+    const done = ( error, user) => {
+
+        if(error){
+            return next(error);
+        }
+        req.logIn(user, (error)=>{
+
+            console.log("Usuario logueado -> ", user);
+
+            if(error){
+                return next(error);
+            }
+            return res.json("Te has logueado");
+        })
+    };
+    
+    passport.authenticate("login", done)(req);
+}
+
+const logoutPost = (req, res, next) =>{
+    console.log("dentro de logout");
+    if(req.user){
+    req.logout();
+    req.session.destroy(() =>{
+        res.clearCookie("connect.sid");
+        return res.json("Has salido");
+    });
+}
+}
+
+export default { registerGet, registerPost, loginGet, loginPost, logoutPost };
