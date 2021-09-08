@@ -11,7 +11,7 @@ const userSchema = new Schema(
     password: { type: String, required: true },
     avatar: { type: String, default: "" },
     favs: [{ type: mongoose.Types.ObjectId, ref: "Location" }],
-    locationLists: [{ type: mongoose.Types.ObjectId, ref: "Location" }],
+    locationLists: [{ type: mongoose.Types.ObjectId, ref: "LocationList" }],
   },
   { timestamps: true }
 );
