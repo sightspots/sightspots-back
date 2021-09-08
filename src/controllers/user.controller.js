@@ -57,13 +57,24 @@ const deleteUser = async (req, res, next) => {
   }
 };
 
-
+// TODO Hacer controlador del endpoint de ver todas las listas, ver una lista concreta, crear una lista y editar una lista 
+const postList = async (req, res, next) => {
+  try {
+    const newList = new LocationList({
+      title: req.body.title,
+      locations: [],
+      user: req.user._id
+    });
+    return res.status(200).json(newList);
+  } catch (error) {
+    next(error);
+  }
+}
 
 export default {
   getUsers,
   getUser,
   deleteUser,
   putUser,
-  putFav,
-  deleteFav
+  postList
 };

@@ -9,10 +9,7 @@ const router = express.Router();
 router.get("/users", userCrtl.getUsers);// * los usuarios
 router.delete("/delete/:id", userCrtl.deleteUser);// borrar usuario
 router.put("/edit/:id", multer.multerUpload.single('avatar'), cloudinary.cloudinaryAvatarUpload, userCrtl.putUser);// editar usuario
-// TODO terminar controlador crear lista
-// router.post("/create-list", userCrtl.postList);//crear lista
+router.post("/create-list", userCrtl.postList);//crear lista
 router.get("/:id", userCrtl.getUser);// 1 usuario
-
-
 
 export default router;
