@@ -8,7 +8,7 @@ router.get("/user/:id", userCrtl.getUser);// 1 usuario
 router.delete("/delete/:id", userCrtl.deleteUser);// borrar usuario
 router.put("/edit/:id", userCrtl.putUser);// editar usuario
 router.put("/put-fav/:id", userCrtl.putFav);//añadir a favoritos
-router.put("/delete-fav/:id");//crear lista
+router.put("/delete-fav/:id", userCrtl.deleteFav);//eliminar favorito
 
 
 export default router;
