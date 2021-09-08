@@ -11,6 +11,7 @@ import auth from './auth/index.js';
 import indexRoutes from './routes/index.routes'
 import authRoutes from './routes/auth.routes'
 import adminRoutes from './routes/admin.routes'
+import locationsRoutes from './routes/admin.routes'
 
 // Connection to database
 db.connect();
@@ -47,6 +48,7 @@ app.use(passport.session());
 app.use("/", indexRoutes);
 app.use("/auth", authRoutes);
 app.use("/admin", adminRoutes);
+app.use("/locations", locationsRoutes);
 
 // Error handler
 app.use((error, req, res, next) => {
