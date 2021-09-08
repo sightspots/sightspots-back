@@ -10,13 +10,13 @@ const getUsers = async (req, res, next) => {
   }
 };
 const getUser = async (req, res, next) => {
-    try {
-        const id = req.params.id;
-        const user = await User.findById(id);
-        return res.status(200).json(user);
-    } catch (error) {
-        next(error);
-    }
+  try {
+    const id = req.params.id;
+    const user = await User.findById(id);
+    return res.status(200).json(user);
+  } catch (error) {
+    next(error);
+  }
 };
 const putUser = async (req, res, next) => {
   try {
@@ -53,10 +53,25 @@ const deleteUser = async (req, res, next) => {
     next(error);
   }
 };
+const putFav = async (req, res, next) => {
+  try {
+    const userId = req.params.id;
+    const locationId = req.body.id;
+    const uptadeUser = await User.findByIdAndUpdate(
+      userId,
+      { $push: {favs:`${locationId}`} },
+      { new: true }
+    );
+    return res.status(200).json(uptadeUser);
+  } catch (error) {
+    next(error);
+  }
+};
 
 export default {
   getUsers,
   getUser,
   deleteUser,
   putUser,
+  putFav,
 };
