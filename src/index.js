@@ -9,6 +9,7 @@ import db from './utils/db.config.js';
 import auth from './auth/index.js';
 
 import authRoutes from './routes/auth.routes'
+import userRoutes from "./routes/users.routes";
 
 // Connection to database
 db.connect();
@@ -43,6 +44,7 @@ app.use(passport.session());
 
 // Routes
 app.use("/auth", authRoutes);
+app.use("/user", userRoutes);
 
 // Error handler
 app.use((error, req, res, next) => {
