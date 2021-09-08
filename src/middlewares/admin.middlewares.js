@@ -1,5 +1,3 @@
-
-
 const isAdmin = (req, res, next) => {
     if(req.isAuthenticated()) {
         if(req.user.role === "admin") {

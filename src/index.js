@@ -7,11 +7,13 @@ import MongoStore from 'connect-mongo';
 
 import db from './utils/db.config.js';
 import auth from './auth/index.js';
+import authMiddleware from './middlewares/auth.middleware.js';
 
 import indexRoutes from './routes/index.routes'
 import authRoutes from './routes/auth.routes'
 import userRoutes from "./routes/users.routes";
 import adminRoutes from './routes/admin.routes'
+import locationsRoutes from './routes/admin.routes'
 
 // Connection to database
 db.connect();
@@ -43,17 +45,17 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-
 // Routes
 app.use("/", indexRoutes);
 app.use("/auth", authRoutes);
-app.use("/user", userRoutes);
+app.use("/user", authMiddleware.isAuth, userRoutes);
 app.use("/admin", adminRoutes);
+app.use("/locations", locationsRoutes);
 
 // Error handler
 app.use((error, req, res, next) => {
     console.log(error);
-    return res.status(error.status || 500).json(`Error ${error.status}: ${error.message}.`);
+    return res.status(error.status || 500).json(`Error ${error.status}: ${error.message}.` || 'Unexpected error.');
 });
 
 app.listen(PORT, () => console.log(`Servidor a tota virolla en http://localhost:${PORT}.`))

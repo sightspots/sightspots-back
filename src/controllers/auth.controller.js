@@ -8,7 +8,6 @@ const registerGet = (req, res, next) => {
 const registerPost = async (req, res, next) => {
 
     const done = ( error, user) =>{
-
             if (error) return next(error);
         
             req.login(user, (error) => (error ? next(error) : res.json("Te has registrado")));

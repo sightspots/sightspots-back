@@ -1,14 +1,19 @@
 import express from "express";
 import userCrtl from "../controllers/user.controller";
+import multer from '../middlewares/multer.middleware';
+import cloudinary from '../middlewares/cloudinary.middleware';
 
 const router = express.Router();
 
+// TODO Eliminar endpoint "/users" al terminar testeos
 router.get("/users", userCrtl.getUsers);// * los usuarios
 router.get("/user/:id", userCrtl.getUser);// 1 usuario
 router.delete("/delete/:id", userCrtl.deleteUser);// borrar usuario
-router.put("/edit/:id", userCrtl.putUser);// editar usuario
+router.put("/edit/:id", multer.multerUpload.single('avatar'), cloudinary.cloudinaryAvatarUpload, userCrtl.putUser);// editar usuario
 router.put("/put-fav/:id", userCrtl.putFav);//añadir a favoritos
-router.put("/delete-fav/:id", userCrtl.deleteFav);//eliminar favorito
+// TODO terminar controlador de eliminar favorito y crear lista
+router.put("/delete-fav/:id", userCrtl.deleteFav);//eliminar de favoritos
+// router.post("/create-list", userCrtl.postList);//crear lista
 
 
 export default router;

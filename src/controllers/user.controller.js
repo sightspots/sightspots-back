@@ -23,16 +23,18 @@ const putUser = async (req, res, next) => {
   try {
     const id = req.params.id;
     const name = req.body.name;
+    const surname = req.body.surname;
     const email = req.body.email;
-    const avatar = req.body.avatar;
+    const avatar = req.pictureUrl;
     let password = req.body.password;
     const saltRounds = 10;
     password = await bcrypt.hash(password, saltRounds);
 
-    const uptadeUser = await User.findByIdAndUpdate(
+    const updatedUser = await User.findByIdAndUpdate(
       id,
       {
         name,
+        surname,
         email,
         avatar,
         password,
@@ -40,7 +42,7 @@ const putUser = async (req, res, next) => {
 
       { new: true }
     );
-    return res.status(200).json(uptadeUser);
+    return res.status(200).json(updatedUser);
   } catch (error) {
     next(error);
   }
@@ -81,7 +83,9 @@ const deleteFav = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-}
+};
+
+// TODO Hacer controlador del endpoint de ver todas las listas, ver una lista concreta, crear una lista y editar una lista 
 
 export default {
   getUsers,
