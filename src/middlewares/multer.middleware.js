@@ -27,4 +27,4 @@ const multerUpload = multer({ storage: storage, fileFilter });
 // aliasAlImportarMódulo.multerUpload.array('locationPictures', 10)
 // (el 10 es el máximo admitido)
 
-export default multerUpload;
+export default { multerUpload };
