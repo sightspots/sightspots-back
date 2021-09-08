@@ -47,6 +47,7 @@ const registerStrategy = new LocalStrategy(
         password: hash,
         name: req.body.name,
         surname: req.body.surname,
+        avatar: req.pictureUrl,
       });
 
       const savedUser = await newUser.save();

@@ -22,8 +22,9 @@ const putUser = async (req, res, next) => {
   try {
     const id = req.params.id;
     const name = req.body.name;
+    const surname = req.body.surname;
     const email = req.body.email;
-    const avatar = req.body.avatar;
+    const avatar = req.pictureUrl;
     let password = req.body.password;
     const saltRounds = 10;
     password = await bcrypt.hash(password, saltRounds);
@@ -32,6 +33,7 @@ const putUser = async (req, res, next) => {
       id,
       {
         name,
+        surname,
         email,
         avatar,
         password,

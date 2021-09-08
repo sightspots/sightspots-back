@@ -11,6 +11,7 @@ import authMiddleware from './middlewares/auth.middleware.js';
 
 import authRoutes from './routes/auth.routes'
 import userRoutes from "./routes/users.routes";
+import adminRoutes from './routes/admin.routes'
 
 // Connection to database
 db.connect();
@@ -45,6 +46,7 @@ app.use(passport.session());
 // Routes
 app.use("/auth", authRoutes);
 app.use("/user", authMiddleware.isAuth, userRoutes);
+app.use("/admin", adminRoutes);
 
 // Error handler
 app.use((error, req, res, next) => {
