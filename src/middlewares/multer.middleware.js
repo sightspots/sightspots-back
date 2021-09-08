@@ -23,14 +23,8 @@ const multerUpload = multer({ storage: storage, fileFilter });
 // En el que vaya a recibir varios archivos, hay que añadir también:
 // multiple
 
-// Para subir un archivo (avatar), en la ruta hay que añadir como middleware:
-// aliasAlImportarMódulo.multerUpload.single('avatar')
-
 // Para subir varios archivos (imágenes de locations), en la ruta hay que añadir como middleware:
 // aliasAlImportarMódulo.multerUpload.array('locationPictures', 10)
 // (el 10 es el máximo admitido)
-
-// TODO: añadir middlewares de Multer y Cloudinary a las rutas donde se suban archivos:
-// aliasAlImportarMódulo.multerUpload.single('picture'), aliasAlImportarMódulo.cloudinaryAvatarUpload o aliasAlImportarMódulo.cloudinaryLocationUpload
 
 export default multerUpload;
