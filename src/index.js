@@ -10,6 +10,7 @@ import auth from './auth/index.js';
 import authMiddleware from './middlewares/auth.middleware.js';
 
 import authRoutes from './routes/auth.routes'
+import userRoutes from "./routes/users.routes";
 
 // Connection to database
 db.connect();
@@ -41,9 +42,9 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-// TODO: Añadir authMiddleware.isAuth a las rutas que deban estar securizadas.
 // Routes
 app.use("/auth", authRoutes);
+app.use("/user", authMiddleware.isAuth, userRoutes);
 
 // Error handler
 app.use((error, req, res, next) => {
