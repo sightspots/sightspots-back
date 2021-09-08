@@ -6,9 +6,9 @@ const indexGet = async (req, res, next) => {
 
   try {
 
-    // const locations = await Location.find();
+    const locations = await Location.find();
 
-    return res.json( "Holaaaa" );
+    return res.json( locations );
 
   } catch (error) {
 
@@ -88,7 +88,7 @@ const editPost = async (req, res, next) => {
 
   try {
 
-      const { title, tags, description, pictures, audio, coments, visitingHours, rating } = req.body;
+      const { id, title, tags, description, pictures, audio, coments, visitingHours, rating } = req.body;
 
       const update = {};
 

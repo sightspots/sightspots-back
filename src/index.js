@@ -8,6 +8,7 @@ import MongoStore from 'connect-mongo';
 import db from './utils/db.config.js';
 import auth from './auth/index.js';
 
+import indexRoutes from './routes/index.routes'
 import authRoutes from './routes/auth.routes'
 import adminRoutes from './routes/admin.routes'
 
@@ -43,6 +44,7 @@ app.use(passport.session());
 
 
 // Routes
+app.use("/", indexRoutes);
 app.use("/auth", authRoutes);
 app.use("/admin", adminRoutes);
 
