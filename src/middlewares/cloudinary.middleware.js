@@ -37,8 +37,9 @@ const cloudinaryLocationUpload = (req, res, next) => {
             req.pictureUrl = file.url;
             next();
         });
-        
+
         streamifier.createReadStream(req.file.buffer).pipe(locationEndPipe);
+
     } else {
         next();
     }

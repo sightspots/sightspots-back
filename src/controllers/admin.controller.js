@@ -49,7 +49,7 @@ const createPost = async (req, res, next) => {
     title,
     tags,
     description,
-    pictures,
+    pictures: req.pictureUrl,
     audio,
     comments,
     visitingHours,
@@ -80,8 +80,8 @@ const editGet = async (req, res, next) => {
 
 }
 
-// Petición POST para editar la location
-const editPost = async (req, res, next) => {
+// Petición PUT para editar la location
+const editPut = async (req, res, next) => {
   const { id } = req.params;
 
   try {
@@ -128,4 +128,4 @@ const deletePost = async (req, res, next) => {
   }
 }
 
-export default { indexGet, oneGet, createGet, createPost, editGet, editPost, deletePost }
+export default { indexGet, oneGet, createGet, createPost, editGet, editPut, deletePost }
