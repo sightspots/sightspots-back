@@ -6,7 +6,8 @@ const locationSchema = new Schema(
   {
     title: { type: String, required: true },
     //TODO hacer enum
-    tags: [{ type: String }],
+    type: [{ type: String }],
+    period: [{ type: String }],
     description: { type: String, required: true },
     pictures: [{ type: String }],
     audio: { type: String },

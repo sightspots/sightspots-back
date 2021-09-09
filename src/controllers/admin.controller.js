@@ -49,7 +49,7 @@ const createPost = async (req, res, next) => {
     title,
     tags,
     description,
-    pictures: req.pictureUrl,
+    pictures: req.picturesUrl,
     audio,
     comments,
     visitingHours,
@@ -91,7 +91,8 @@ const editPut = async (req, res, next) => {
     if (title) update.title = title;
     if (tags) update.tags = tags;
     if (description) update.description = description;
-    if (pictures) update.pictures = pictures;
+    // TODO: Arreglar esto porque al editar una location las imágenes nuevas no se suben a Cloudinary
+    if (pictures) update.pictures = req.picturesUrl;
     if (audio) update.audio = audio;
     if (comments) update.comments = comments;
     if (visitingHours) update.visitingHours = visitingHours;

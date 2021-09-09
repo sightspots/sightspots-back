@@ -22,4 +22,8 @@ TAGS FOR DO IT
     Ride (Rent a bike)
 
 
+type: museum, square, monument
+ 
+
+
 
