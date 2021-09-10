@@ -14,11 +14,7 @@ router.get('/locations/:id', adminController.oneGet); // Renderiza una única lo
 
 router.get('/create', adminController.createGet); // Renderiza el formulario para crear una location
 
-router.post('/create', multer.multerUpload.array('pictures'), cloudinary.locationUpload, adminController.createPost);
-// (req, res) => {
-//     res.json(req.pictureUrl);
-// });
-// Petición POST para insertar la nueva location
+router.post('/create', multer.multerUpload.array('pictures'), cloudinary.locationUpload, adminController.createPost); // Petición POST para insertar la nueva location
 
 router.get('/edit/:id', adminController.editGet); // Renderiza el formulario para editar la location
 

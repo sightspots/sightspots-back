@@ -10,8 +10,6 @@ cloudinary.config({
     api_secret: process.env.API_SECRET,
 });
 
-// TODO: Refactor this
-
 const avatarUpload = (req, res, next) => {
     if (req.file) {
 
