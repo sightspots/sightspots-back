@@ -40,7 +40,7 @@ const uploadPromise = (bufferData) => {
 
 const locationUpload = async (req, res, next) => {
     if (req.files) {
-        req.pictureUrl = await Promise.all(req.files.map((file) => uploadPromise(file.buffer)));
+        req.picturesUrl = await Promise.all(req.files.map((file) => uploadPromise(file.buffer)));
         next();
 
     } else {
