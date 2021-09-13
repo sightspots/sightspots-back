@@ -10,15 +10,13 @@ cloudinary.config({
     api_secret: process.env.API_SECRET,
 });
 
-// TODO: Refactor this
-
-const cloudinaryAvatarUpload = (req, res, next) => {
+const avatarUpload = (req, res, next) => {
     if (req.file) {
 
-        const avatarEndPipe = cloudinary.uploader.upload_stream({ folder: 'sightspots_user_avatars' }, function (error, file) {
+        const avatarEndPipe = cloudinary.uploader.upload_stream({ folder: 'sightspots_user_avatars' }, function (error, fileUploaded) {
             if (error) next(error);
 
-            req.pictureUrl = file.url;
+            req.picturesUrl = fileUploaded.url;
             next();
         });
 
@@ -28,21 +26,26 @@ const cloudinaryAvatarUpload = (req, res, next) => {
     }
 }
 
-const cloudinaryLocationUpload = (req, res, next) => {
-    if (req.file) {
-
-        const locationEndPipe = cloudinary.uploader.upload_stream({ folder: 'sightspots_loc_pictures' }, function (error, file) {
-            if (error) next(error);
-
-            req.pictureUrl = file.url;
-            next();
+const uploadPromise = (bufferData) => {
+    return new Promise((resolve, reject) => {
+        const locationEndPipe = cloudinary.uploader.upload_stream({ folder: "sightspots_location_pictures" }, (error, fileUploaded) => {
+            if (error) reject(error);
+            resolve(fileUploaded.url);
         });
 
-        streamifier.createReadStream(req.file.buffer).pipe(locationEndPipe);
+        streamifier.createReadStream(bufferData).pipe(locationEndPipe);
+    })
+};
+
+
+const locationUpload = async (req, res, next) => {
+    if (req.files) {
+        req.picturesUrl = await Promise.all(req.files.map((file) => uploadPromise(file.buffer)));
+        next();
 
     } else {
         next();
     }
 }
 
-export default { cloudinaryAvatarUpload, cloudinaryLocationUpload };
+export default { avatarUpload, locationUpload };
