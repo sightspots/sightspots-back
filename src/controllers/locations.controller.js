@@ -9,9 +9,9 @@ const indexGet = async (req, res, next) => {
 
   try {
 
-    const Lista = await LocationList.find();
+    const location = await Location.find();
 
-    return res.json( Lista );
+    return res.json(location);
 
   } catch (error) {
 
@@ -19,44 +19,71 @@ const indexGet = async (req, res, next) => {
   }
 };
 
-// Endpoint con los arrays locations que tiene guardado el Usuario
-const indexGetUser = async (req, res, next) => {
+// Endpoint con la lista completa de locationLists que tiene guardadas el Usuario
+const locationListsGet = async (req, res, next) => {
 
-    const { id } = req.params;
+  try {
 
-    try {
-  
-      const locationsList = await LocationList.find().populate(
+    const locationsList = await LocationList.find({ user: req.body._id });
 
-        {
-          path:"user",
-          math: { _id: { _id: id }}
-        }
-      );
-  
-      return res.json( locationsList );
-  
-    } catch (error) {
-  
-      return next(error);
-    }
-  };
+    return res.json(locationsList);
 
-// Endpoint con una única location
-  const oneGet = async (req, res, next) => {
+  } catch (error) {
 
-    const { id } = req.params;
-  
-    try {
-  
-      const location = await Location.findById(id);
-  
-      return res.json(location );
-  
-    } catch (error) {
-  
-      return next(error);
-    }
-  };
+    return next(error);
+  }
+};
 
-export default { indexGet, indexGetUser, oneGet }
+// Endpoint con una única locationList del Usuario
+const locationListGet = async (req, res, next) => {
+
+  const { id } = req.params;
+
+  try {
+
+    const locationList = await LocationList.findById(id).populate('locations');
+
+    return res.json(locationList);
+
+  } catch (error) {
+
+    return next(error);
+  }
+};
+
+// Endpoint para crear una location list
+const locationListPost = async (req, res, next) => {
+  const { title } = req.body;
+
+  const newLocationList = new LocationList({
+    title,
+    locations: [],
+    user: req.body._id
+  });
+
+  const locationList = await newLocationList.save();
+
+  return res.json(locationList);
+}
+
+// Endpoint para añadir una location a una location list
+const locationListPut = async (req, res, next) => {
+  const { id } = req.params;
+  const { locations } = req.body;
+
+  try {
+    const locationList = await LocationList.findById(id);
+
+    await LocationList.findByIdAndUpdate(
+      id,
+      { $addToSet: { locations: locations } },
+      { new: true }
+    );
+
+    return res.json(locationList);
+  } catch (error) {
+    return next(error);
+  }
+}
+
+export default { indexGet, locationListsGet, locationListGet, locationListPost, locationListPut }

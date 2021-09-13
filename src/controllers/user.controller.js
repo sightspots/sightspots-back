@@ -58,12 +58,9 @@ const deleteUser = async (req, res, next) => {
 };
 
 
-
 export default {
   getUsers,
   getUser,
   deleteUser,
-  putUser,
-  putFav,
-  deleteFav
+  putUser
 };
