@@ -43,7 +43,7 @@ const createGet = (req, res, next) => {
 // Petición POST para crear la location
 const createPost = async (req, res, next) => {
 
-  const { title, type, description, pictures, audio, comments, visitingHours, rating } = req.body;
+  const { title, type, description, pictures, audio, comments, visitingHours, rating, latLng } = req.body;
 
   const newLocation = new Location({
     title,
@@ -53,7 +53,8 @@ const createPost = async (req, res, next) => {
     audio,
     comments,
     visitingHours,
-    rating
+    rating,
+    latLng
   });
 
   const location = await newLocation.save();
@@ -84,20 +85,26 @@ const editPut = async (req, res, next) => {
 
   try {
 
-    const { title, type, description, pictures, audio, comments, visitingHours, rating } = req.body;
+    const { title, type, description, pictures, audio, comments, visitingHours, rating, latLng } = req.body;
 
     const update = {};
 
     if (title) update.title = title;
     if (type) update.type = type;
     if (description) update.description = description;
-    // TODO: Arreglar esto porque al editar una location las imágenes nuevas no se suben a Cloudinary
-    if (pictures) update.pictures = req.picturesUrl;
     if (audio) update.audio = audio;
     if (comments) update.comments = comments;
     if (visitingHours) update.visitingHours = visitingHours;
     if (rating) update.rating = rating;
+    if (latLng) update.latLng = latLng;
 
+    await Location.findById(id);
+
+    await Location.findByIdAndUpdate(
+      id,
+      { $addToSet: { pictures: req.picturesUrl } },
+      { new: true }
+    );
 
     const updateLocation = await Location.findByIdAndUpdate(id, update, { new: true });
 

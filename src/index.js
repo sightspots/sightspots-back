@@ -8,6 +8,7 @@ import MongoStore from 'connect-mongo';
 import db from './utils/db.config.js';
 import auth from './auth/index.js';
 import authMiddleware from './middlewares/auth.middleware.js';
+import adminMiddleware from './middlewares/admin.middleware.js';
 
 import indexRoutes from './routes/index.routes'
 import authRoutes from './routes/auth.routes'
@@ -49,7 +50,7 @@ app.use(passport.session());
 app.use("/", indexRoutes);
 app.use("/auth", authRoutes);
 app.use("/user", authMiddleware.isAuth, userRoutes);
-app.use("/admin", adminRoutes);
+app.use("/admin", adminMiddleware.isAdmin, adminRoutes);
 app.use("/locations", locationsRoutes);
 
 // Error handler

@@ -1,9 +1,6 @@
 import LocationList from "../models/LocationList.model";
 import Location from "../models/Location.model";
 
-
-// TODO Probar los endpoints, la Query de los arrays del usuario no se si es correcta
-
 // Endpoint con el array entero de locations
 const indexGet = async (req, res, next) => {
 

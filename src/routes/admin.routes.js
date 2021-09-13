@@ -2,9 +2,6 @@ import express from "express";
 import adminController from "../controllers/admin.controller";
 import multer from '../middlewares/multer.middleware';
 import cloudinary from '../middlewares/cloudinary.middleware';
-import { isAdmin } from "../middlewares/admin.middlewares"
-
-//TODO Implementar [isAdmin] a la espera de pruebas 
 
 const router = express.Router();
 
