@@ -23,6 +23,7 @@ Route: Valencia
             Free
         Ubicación:
             Lonja, 2 - 46001 - València
+            39°28′28″N 0°22′42″O
 
         La Lonja es uno de los edificios característicos de la ciudad, además de ser uno de los más famosos monumentos del gótico civil que puede ofrecer Europa. Goza de la alta distinción de Monumento Histórico Artístico de carácter nacional desde el 4 de junio de 1931 y fue declarada por la UNESCO como Patrimonio de la Humanidad el 5 de diciembre de 1996.
 
@@ -47,6 +48,7 @@ Route: Valencia
             Free
         Ubicación:
             Plaza del Mercado, s/n; 46001 - València
+            39°28′25″N 0°22′44″O
 
         Si eres amante de la gastronomía, disfrutas con los productos frescos, su color, su sabor, y valoras la riqueza, la variedad y la calidad en la cocina, el Mercado Central de Valencia es un paraíso que no te puedes perder. Es una visita obligada en esta ciudad, una gigantesca despensa de arquitectura modernista, que contiene todos los productos frescos de la huerta y todo el sabor y olor del Mediterráneo en su interior. No lo dudes, date una vuelta por el Mercado Central, ¡tus sentidos te lo agradecerán!
 
@@ -70,6 +72,7 @@ Route: Valencia
             Free
         Ubicación:
             Plaza de los Fueros s/n, 46003 - València
+            39°28′45″N 0°22′33″O
 
        Comenzadas a construir en 1392 por Pere Balaguer, Las Torres nacen como defensoras de uno de los accesos más usados de la València antigua. En 1865 se derriban las murallas y quedan exentas. Desde 1586 hasta 1887 son utilizadas como cárcel de nobles. Posteriormente, la parte trasera de las Torres fue descubierta y desde la Plaza de los Fueros se pueden observar cinco salas, con arcos de ojiva y bóvedas nervadas. Las Torres son un magnífico exponente de la arquitectura gótica.
 
@@ -92,6 +95,7 @@ Route: Valencia
             18€
         Ubicación:
             C/ de Guillem de Castro, 118, 46003
+            39°28′48″N 0°22′58″O
 
         El Instituto Valenciano de Arte Moderno, IVAM (en valenciano Institut Valencià d'Art Modern) es una institución creada por la Ley 9/1986, de 30 de diciembre,​ cuyo objeto principal es «el desarrollo de la política cultural de la Generalidad Valenciana en cuanto concierne al conocimiento, tutela, fomento y difusión del arte moderno».
 
@@ -116,6 +120,7 @@ Route: Valencia
             3 €
         Ubicación:
             Carrer del Poeta Querol, 2, 46002
+            39°28′22″N 0°22′29″O
 
         En honor a la industria de la cerámica Valenciana, el Museo Nacional de Cerámica-González Martí se ubica en el que es considerado el mejor ejemplo de Barroco en España, el Palacio del Marqués de Dos Aguas. El museo alberga la mayor colección nacional de cerámica desde el siglo VIII hasta la época contemporánea con piezas de Picasso.
 
