@@ -57,55 +57,9 @@ const deleteUser = async (req, res, next) => {
   }
 };
 
-// TODO Hacer controlador del endpoint de ver todas las listas, ver una lista concreta, crear una lista y editar una lista 
-const postList = async (req, res, next) => {
-  try {
-    const newList = new LocationList({
-      title: req.body.title,
-      locations: [],
-      user: req.user._id
-    });
-    await newList.save();
-    return res.status(200).json(newList);
-  } catch (error) {
-    next(error);
-  }
-};
-
-const addLocationToList = async (req, res, next) => {
-  const { id } = req.params;
-
-  try {
-    const locationToAdd = new LocationList({
-      locations: req.body.locations,
-    });
-
-    const updatedList = await LocationList.findByIdAndUpdate(
-      id,
-      { $addToSet: { locations: locationToAdd.locations } },
-      { new: true }
-    );
-    return res.status(200).json(updatedList);
-  } catch (error) {
-    next(error);
-  }
-};
-
-const getLists = async (req, res, next) => {
-  try {
-    const locationLists = await LocationList.find({ user: req.user._id });
-    return res.status(200).json(locationLists);
-  } catch (error) {
-    next(error);
-  }
-}
-
 export default {
   getUsers,
   getUser,
   deleteUser,
-  putUser,
-  postList,
-  addLocationToList,
-  getLists
+  putUser
 };
