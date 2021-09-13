@@ -10,7 +10,7 @@ const registerPost = async (req, res, next) => {
     const done = ( error, user) =>{
             if (error) return next(error);
         
-            req.login(user, (error) => (error ? next(error) : res.json("Te has registrado")));
+            req.login(user, (error) => (error ? next(error) : res.json("Usuario registrado con éxito")));
         
     }
 

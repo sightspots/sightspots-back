@@ -6,7 +6,7 @@ import cloudinary from '../middlewares/cloudinary.middleware';
 const router = express.Router();
 
 router.get("/login", authController.registerGet);
-router.post("/register", multer.multerUpload.single('avatar'), cloudinary.cloudinaryAvatarUpload, authController.registerPost);
+router.post("/register", multer.multerUpload.single('avatar'), cloudinary.avatarUpload, authController.registerPost);
 
 router.get("/login", authController.loginGet);
 router.post("/login", authController.loginPost);

@@ -43,17 +43,18 @@ const createGet = (req, res, next) => {
 // Petición POST para crear la location
 const createPost = async (req, res, next) => {
 
-  const { title, tags, description, pictures, audio, comments, visitingHours, rating } = req.body;
+  const { title, type, description, pictures, audio, comments, visitingHours, rating, latLng } = req.body;
 
   const newLocation = new Location({
     title,
-    tags,
+    type,
     description,
-    pictures: req.pictureUrl,
+    pictures: req.picturesUrl,
     audio,
     comments,
     visitingHours,
-    rating
+    rating,
+    latLng
   });
 
   const location = await newLocation.save();
@@ -84,19 +85,26 @@ const editPut = async (req, res, next) => {
 
   try {
 
-    const { title, tags, description, pictures, audio, comments, visitingHours, rating } = req.body;
+    const { title, type, description, pictures, audio, comments, visitingHours, rating, latLng } = req.body;
 
     const update = {};
 
     if (title) update.title = title;
-    if (tags) update.tags = tags;
+    if (type) update.type = type;
     if (description) update.description = description;
-    if (pictures) update.pictures = pictures;
     if (audio) update.audio = audio;
     if (comments) update.comments = comments;
     if (visitingHours) update.visitingHours = visitingHours;
     if (rating) update.rating = rating;
+    if (latLng) update.latLng = latLng;
 
+    await Location.findById(id);
+
+    await Location.findByIdAndUpdate(
+      id,
+      { $addToSet: { pictures: req.picturesUrl } },
+      { new: true }
+    );
 
     const updateLocation = await Location.findByIdAndUpdate(id, update, { new: true });
 
