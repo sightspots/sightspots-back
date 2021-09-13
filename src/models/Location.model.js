@@ -11,7 +11,8 @@ const locationSchema = new Schema(
     audio: { type: String },
     comments: [{ type: mongoose.Types.ObjectId, ref: "Comment"}],
     visitingHours: { type: String },
-    rating: { type: Number, min: 0},
+    rating: { type: Number, min: 0 },
+    latLng: { type: String, required: true }
   },
   { timestamps: true }
 );
