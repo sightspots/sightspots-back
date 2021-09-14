@@ -14,7 +14,7 @@ import indexRoutes from './routes/index.routes'
 import authRoutes from './routes/auth.routes'
 import userRoutes from "./routes/users.routes";
 import adminRoutes from './routes/admin.routes'
-import locationsRoutes from './routes/admin.routes'
+import locationsRoutes from './routes/locations.routes'
 
 // Connection to database
 db.connect();
@@ -27,6 +27,15 @@ const app = express();
 
 // Dotenv configuration
 dotenv.config();
+
+// Conexión entre el fron y el back
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Credentials', true);
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    res.header('Access-Control-Allow-Origin', '*')
+    next();
+  });
 
 // Crear el req.body
 app.use(express.json());
@@ -59,4 +68,4 @@ app.use((error, req, res, next) => {
     return res.status(error.status || 500).json(`Error ${error.status}: ${error.message}.` || 'Unexpected error.');
 });
 
-app.listen(PORT, () => console.log(`Servidor a tota virolla en http://localhost:${PORT}.`))
+app.listen(PORT, () => console.log(`Servidor a tota virolla en http://localhost:${PORT}`))
