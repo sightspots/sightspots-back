@@ -1,6 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 
+
 import passport from 'passport';
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
@@ -16,6 +17,8 @@ import userRoutes from "./routes/users.routes";
 import adminRoutes from './routes/admin.routes'
 import locationsRoutes from './routes/locations.routes'
 
+const cors = require('cors')
+
 // Connection to database
 db.connect();
 
@@ -24,6 +27,7 @@ const PORT = process.env.PORT || 4000;
 
 // Express configuration
 const app = express();
+
 
 // Dotenv configuration
 dotenv.config();
@@ -36,6 +40,11 @@ app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*')
     next();
 });
+
+app.use( cors( {
+    origin: ['http://localhost:3000', 'http://localhost:4000'],
+    credentials: true
+}))
 
 // Crear el req.body
 app.use(express.json());
