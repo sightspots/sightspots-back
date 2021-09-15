@@ -68,7 +68,7 @@ app.use(passport.session());
 app.use("/", indexRoutes);
 app.use("/auth", authRoutes);
 app.use("/user", authMiddleware.isAuth, userRoutes);
-app.use("/admin", adminMiddleware.isAdmin, adminRoutes);
+app.use("/admin", adminRoutes); // TODO cuando se complete la Tarea de login volver añadir: adminMiddleware.isAdmin,
 app.use("/locations", locationsRoutes);
 
 // Error handler
