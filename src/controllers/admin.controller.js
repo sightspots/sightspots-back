@@ -1,38 +1,6 @@
 import Location from "../models/Location.model";
 
 
-// Renderizamos la página con todas las locations
-const indexGet = async (req, res, next) => {
-
-  try {
-
-    const locations = await Location.find();
-
-    return res.json(locations);
-
-  } catch (error) {
-
-    return next(error);
-  }
-};
-
-// Renderizamos la página con una única location
-const oneGet = async (req, res, next) => {
-
-  const { id } = req.params;
-
-  try {
-
-    const location = await Location.findById(id);
-
-    return res.json(location);
-
-  } catch (error) {
-
-    return next(error);
-  }
-};
-
 // Renderizamos la página con el formulario para crear location
 const createGet = (req, res, next) => {
 
@@ -134,4 +102,4 @@ const deletePost = async (req, res, next) => {
   }
 }
 
-export default { indexGet, oneGet, createGet, createPost, editGet, editPut, deletePost }
+export default { createGet, createPost, editGet, editPut, deletePost }

@@ -5,10 +5,6 @@ import cloudinary from '../middlewares/cloudinary.middleware';
 
 const router = express.Router();
 
-router.get('/locations', adminController.indexGet); // Renderiza todas las locations
-
-router.get('/locations/:id', adminController.oneGet); // Renderiza una única location (por eso el id de la location en la ruta)
-
 router.get('/create', adminController.createGet); // Renderiza el formulario para crear una location
 
 router.post('/create', multer.multerUpload.array('pictures'), cloudinary.locationUpload, adminController.createPost); // Petición POST para insertar la nueva location

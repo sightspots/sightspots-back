@@ -16,6 +16,23 @@ const indexGet = async (req, res, next) => {
   }
 };
 
+// Renderizamos la página con una única location
+const oneGet = async (req, res, next) => {
+
+  const { id } = req.params;
+
+  try {
+
+    const location = await Location.findById(id);
+
+    return res.json(location);
+
+  } catch (error) {
+
+    return next(error);
+  }
+};
+
 // Endpoint con la lista completa de locationLists que tiene guardadas el Usuario
 const locationListsGet = async (req, res, next) => {
 
@@ -83,4 +100,4 @@ const locationListPut = async (req, res, next) => {
   }
 }
 
-export default { indexGet, locationListsGet, locationListGet, locationListPost, locationListPut }
+export default { indexGet, oneGet, locationListsGet, locationListGet, locationListPost, locationListPut }
