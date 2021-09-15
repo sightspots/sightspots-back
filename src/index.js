@@ -14,7 +14,7 @@ import indexRoutes from './routes/index.routes'
 import authRoutes from './routes/auth.routes'
 import userRoutes from "./routes/users.routes";
 import adminRoutes from './routes/admin.routes'
-import locationsRoutes from './routes/admin.routes'
+import locationsRoutes from './routes/locations.routes'
 
 // Connection to database
 db.connect();
