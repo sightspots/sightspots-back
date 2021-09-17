@@ -11,13 +11,15 @@ const createGet = (req, res, next) => {
 // Petición POST para crear la location
 const createPost = async (req, res, next) => {
 
+  console.log(req.body)
+
   const { title, type, description, pictures, audio, comments, visitingHours, rating, latLng } = req.body;
 
   const newLocation = new Location({
     title,
     type,
     description,
-    pictures: req.picturesUrl,
+    pictures: req.files,
     audio,
     comments,
     visitingHours,
