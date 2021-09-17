@@ -16,7 +16,7 @@ const avatarUpload = (req, res, next) => {
         const avatarEndPipe = cloudinary.uploader.upload_stream({ folder: 'sightspots_user_avatars' }, function (error, fileUploaded) {
             if (error) next(error);
 
-            req.picturesUrl = fileUploaded.url;
+            req.pictureUrl = fileUploaded.url;
             next();
         });
 

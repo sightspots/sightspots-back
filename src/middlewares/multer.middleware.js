@@ -16,9 +16,4 @@ const storage = multer.memoryStorage();
 
 const multerUpload = multer({ storage: storage, fileFilter });
 
-// TODO: en los formularios HTML, hay que poner:
-// method="POST" enctype="multipart/form-data"
-// En el que vaya a recibir varios archivos, hay que añadir también:
-// multiple
-
 export default { multerUpload };
