@@ -19,7 +19,7 @@ const createPost = async (req, res, next) => {
     title,
     type,
     description,
-    pictures: req.files,
+    pictures: picturesUrl,
     audio,
     comments,
     visitingHours,
