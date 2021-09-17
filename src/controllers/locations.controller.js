@@ -6,7 +6,7 @@ const indexGet = async (req, res, next) => {
 
   try {
 
-    const location = await Location.find();
+    const location = await Location.find().sort({createdAt: -1});
 
     return res.json(location);
 

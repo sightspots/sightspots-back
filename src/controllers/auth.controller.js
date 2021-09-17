@@ -37,7 +37,7 @@ const loginPost = (req, res, next) =>{
             if(error){
                 return next(error);
             }
-            return res.json("Te has logueado");
+            return res.status(200).json(user);
         })
     };
     
