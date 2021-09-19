@@ -6,7 +6,7 @@ const indexGet = async (req, res, next) => {
 
   try {
 
-    const location = await Location.find().sort({createdAt: -1});
+    const location = await Location.find().sort({ createdAt: -1 });
 
     return res.json(location);
 
@@ -100,4 +100,41 @@ const locationListPut = async (req, res, next) => {
   }
 }
 
-export default { indexGet, oneGet, locationListsGet, locationListGet, locationListPost, locationListPut }
+// Endpoint para sumar +1 a rating
+const locationRatingPut = async (req, res, next) => {
+  const { id, action } = req.params;
+
+  let value;
+
+  if (action === 'upvote') {
+    value = 1;
+  } else if (action === 'downvote') {
+    value = -1;
+  }
+
+  if (action !== undefined) {
+    try {
+      const { rating } = req.body;
+      const update = {};
+      update.rating = rating;
+
+      await Location.findById(id);
+      await Location.findByIdAndUpdate(
+        id,
+        { $inc: { rating: value } },
+        { new: true }
+      );
+
+      const updatedRating = await Location.findByIdAndUpdate(id, update, { new: true });
+      return res.json(updatedRating);
+    } catch (error) {
+      return next(error);
+    }
+  } else {
+    const error = new Error('Parámetros incorrectos.');
+    return next(error);
+  }
+
+};
+
+export default { indexGet, oneGet, locationListsGet, locationListGet, locationListPost, locationListPut, locationRatingPut }
