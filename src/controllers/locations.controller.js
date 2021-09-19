@@ -102,39 +102,25 @@ const locationListPut = async (req, res, next) => {
 
 // Endpoint para sumar +1 a rating
 const locationRatingPut = async (req, res, next) => {
-  const { id, action } = req.params;
+  const { id } = req.params;
 
-  let value;
+  try {
+    const { rating } = req.body;
+    const update = {};
+    update.rating = rating;
 
-  if (action === 'upvote') {
-    value = 1;
-  } else if (action === 'downvote') {
-    value = -1;
-  }
+    await Location.findById(id);
+    await Location.findByIdAndUpdate(
+      id,
+      { $inc: { rating: 1 } },
+      { new: true }
+    );
 
-  if (action !== undefined) {
-    try {
-      const { rating } = req.body;
-      const update = {};
-      update.rating = rating;
-
-      await Location.findById(id);
-      await Location.findByIdAndUpdate(
-        id,
-        { $inc: { rating: value } },
-        { new: true }
-      );
-
-      const updatedRating = await Location.findByIdAndUpdate(id, update, { new: true });
-      return res.json(updatedRating);
-    } catch (error) {
-      return next(error);
-    }
-  } else {
-    const error = new Error('Parámetros incorrectos.');
+    const updatedLocation = await Location.findByIdAndUpdate(id, update, { new: true });
+    return res.json(updatedLocation);
+  } catch (error) {
     return next(error);
   }
-
 };
 
 export default { indexGet, oneGet, locationListsGet, locationListGet, locationListPost, locationListPut, locationRatingPut }
